@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard";
-import { Container, Navbar, SelectWrapper, Select, Logo } from "./styles";
+import {
+  Container,
+  Navbar,
+  SelectWrapper,
+  Select,
+  Logo,
+  Loading,
+} from "./styles";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -12,9 +20,11 @@ const App = () => {
   }, []);
 
   const getData = async () => {
+    setLoading(true);
     const response = await fetch("https://fakestoreapi.com/products/");
     const data = await response.json();
     setProducts(data);
+    setLoading(false);
   };
 
   const getCategories = async () => {
@@ -26,6 +36,7 @@ const App = () => {
   };
 
   const selectCategory = async (event) => {
+    setLoading(true);
     if (event.target.value === "all") {
       getData();
       return;
@@ -36,13 +47,14 @@ const App = () => {
     );
     const data = await response.json();
     setProducts(data);
+    setLoading(false);
   };
 
   return (
     <Container>
       <Navbar>
         <Logo href="/">
-          <h1>Store</h1>
+          <h1>Demo Shop</h1>
         </Logo>
         <SelectWrapper>
           <Select
@@ -64,7 +76,11 @@ const App = () => {
         </SelectWrapper>
       </Navbar>
       <section>
-        <ProductCard products={products} />
+        {loading ? (
+          <Loading>Loading, please wait...</Loading>
+        ) : (
+          <ProductCard products={products} />
+        )}
       </section>
     </Container>
   );

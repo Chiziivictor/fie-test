@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 2rem;
-
-  @media screen and (min-width: 768px) {
-    padding: 0 5rem;
-  }
+  font-family: Helvetica, Arial, sans-serif;
 `;
 export const Navbar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5vh;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  box-shadow: 0 -5px 10px 1px black;
+  padding: 1.5rem 2rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 1.5rem 7rem;
+  }
 `;
 export const Logo = styled.a`
   cursor: pointer;
@@ -22,7 +27,7 @@ export const SelectWrapper = styled.div`
   width: 160px;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 7px 10px;
 `;
 export const Select = styled.select`
   width: 100%;
@@ -37,6 +42,7 @@ export const Cards = styled.div`
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+  padding: 1rem 4rem 4rem;
 `;
 export const Card = styled.div`
   border: 1px solid gray;
@@ -63,4 +69,9 @@ export const Price = styled.p`
   border: 1px solid gray;
   width: 80px;
   text-align: center;
+`;
+export const Loading = styled.div`
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
 `;
